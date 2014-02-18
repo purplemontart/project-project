@@ -1,3 +1,5 @@
 project-project
 ===============
-University project thing
+Requires Python 2.7
+
+To run, double click thingie.py
