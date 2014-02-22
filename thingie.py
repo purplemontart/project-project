@@ -13,7 +13,10 @@ colour = 100, 20, 30  # colour for background
 screen = pygame.display.set_mode(size)  # apply screen size
 pygame.display.set_caption('Lord of the Sings')  # set name on screen
 
-class Player(pygame.sprite.Sprite): # create a class named Player
+myfont = pygame.font.SysFont("monospace", 15)
+
+
+class Player(pygame.sprite.Sprite):  # create a class named Player
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)  # initialise sprite on self
 
@@ -23,7 +26,7 @@ class Player(pygame.sprite.Sprite): # create a class named Player
 
         self.hp = 50
         self.strength = 10
-        self.dmgmod = 0
+        self.dmgmod = 1
 
     def move(self, x, y):  # defines movement function
         self.player_rect.centerx += x
@@ -35,7 +38,10 @@ class Player(pygame.sprite.Sprite): # create a class named Player
     def player_attack(self, target):
         player_damage_dealt = self.strength * self.dmgmod
         target.hp -= player_damage_dealt
+        if target.hp <= 0:
+            target.die()
         return
+
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
@@ -61,8 +67,25 @@ class Enemy(pygame.sprite.Sprite):
         self.enemy_rect.y += dy * self.speed
         return
 
+    def die(self):
+        enemy = None
+
+    def rebound(self, x, y):
+        self.enemy_rect.centerx += x
+        self.enemy_rect.centery += y
+
+
+class Chest(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.bitmap = pygame.image.load("chest.png")
+        self.chest_rect = self.bitmap.get_rect()
+        self.chest_rect.topleft = [100, 200]
+
 player = Player()  # define player as an instance of class Player
 enemy = Enemy()
+chest = Chest()
 
 player.player_rect.x = 50
 player.player_rect.y = 300
@@ -71,6 +94,10 @@ enemy.enemy_rect.x = 500
 enemy.enemy_rect.y = 100
 
 while 1:  # main game loop
+
+    label = myfont.render(str(enemy.hp), 1, (255, 255, 0))
+    label2 = myfont.render(str("Opened!"), 1, (255, 255, 0))
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:  # looks for an exit command
             sys.exit()  # if found, exits the program
@@ -89,10 +116,22 @@ while 1:  # main game loop
             pygame.display.set_caption('Hit!')
             if event.type == pygame.MOUSEBUTTONDOWN:
                 player.player_attack(enemy)
-            
+                enemy.rebound(200, -300)
+
+        if player.player_rect.colliderect(chest.chest_rect):
+            if player.player_rect.x > 0:
+                player.player_rect.right = chest.chest_rect.left
+            if player.player_rect.x < 0:
+                player.player_rect.left = chest.chest_rect.right
+            if player.player_rect.y > 0:
+                player.player_rect.bottom = chest.chest_rect.top
+            if player.player_rect.y < 0:
+                player.player_rect.top = chest.chest_rect.bottom
 
     screen.fill(colour)  # fills screen with colour defined above
     screen.blit(player.bitmap, player.player_rect)  # calls blit function on specified classes
     screen.blit(enemy.bitmap, enemy.enemy_rect)
+    screen.blit(chest.bitmap, chest.chest_rect)
+    screen.blit(label, (100, 100))
     enemy.move_to_player(player)
     pygame.display.flip()  # updates screen
