@@ -13,6 +13,8 @@ colour = 100, 20, 30  # colour for background
 screen = pygame.display.set_mode(size)  # apply screen size
 pygame.display.set_caption('Lord of the Sings')  # set name on screen
 
+clock = pygame.time.Clock()
+
 myfont = pygame.font.SysFont("monospace", 15)
 
 
@@ -50,7 +52,7 @@ class Enemy(pygame.sprite.Sprite):
         self.bitmap = pygame.image.load("ball.bmp")
         self.enemy_rect = self.bitmap.get_rect()
         self.enemy_rect.topleft = [100, 200]
-        self.speed = 1
+        self.speed = 2
 
         self.hp = 10
         self.strength = 7
@@ -59,7 +61,7 @@ class Enemy(pygame.sprite.Sprite):
         dx, dy = player.player_rect.x - self.enemy_rect.x, player.player_rect.y - self.enemy_rect.y
         dist = math.hypot(dx, dy)
         if dist == 0:
-            dist == 1
+            dist = 1
         else:
             dx, dy = dx / dist, dy / dist
 
@@ -100,6 +102,7 @@ while 1:  # main game loop
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:  # looks for an exit command
+            pygame.quit()
             sys.exit()  # if found, exits the program
 
         if event.type == pygame.KEYDOWN:  # allows for movement control via keyboard
@@ -129,9 +132,16 @@ while 1:  # main game loop
                 player.player_rect.top = chest.chest_rect.bottom
 
     screen.fill(colour)  # fills screen with colour defined above
+
     screen.blit(player.bitmap, player.player_rect)  # calls blit function on specified classes
+
     screen.blit(enemy.bitmap, enemy.enemy_rect)
+
     screen.blit(chest.bitmap, chest.chest_rect)
+
     screen.blit(label, (100, 100))
+
     enemy.move_to_player(player)
+
     pygame.display.flip()  # updates screen
+    clock.tick(30)
