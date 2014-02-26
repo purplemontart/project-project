@@ -13,9 +13,11 @@ colour = 100, 20, 30  # colour for background
 screen = pygame.display.set_mode(size)  # apply screen size
 pygame.display.set_caption('Lord of the Sings')  # set name on screen
 
-clock = pygame.time.Clock()
+clock = pygame.time.Clock()  # sets up a clock to control FPS
 
 myfont = pygame.font.SysFont("monospace", 15)
+
+walls = []
 
 
 class Player(pygame.sprite.Sprite):  # create a class named Player
@@ -85,6 +87,39 @@ class Chest(pygame.sprite.Sprite):
         self.chest_rect = self.bitmap.get_rect()
         self.chest_rect.topleft = [100, 200]
 
+
+class Wall(object):
+    def __init__(self, pos):
+        walls.append(self)
+        self.rect = pygame.Rect(pos[0], pos[1], 16, 16)
+
+level = [
+    "WWWWWWWWWWWWWWWWWWWW",
+"W                  W",
+"W         WWWWWW   W",
+"W   WWWW       W   W",
+"W   W        WWWW  W",
+"W WWW  WWWW        W",
+"W   W     W W      W",
+"W   W     W   WWW WW",
+"W   WWW WWW   W W  W",
+"W     W   W   W W  W",
+"WWW   W   WWWWW W  W",
+"W W      WW        W",
+"W W   WWWW   WWW   W",
+"W     W    E   W   W",
+"WWWWWWWWWWWWWWWWWWWW",
+]
+
+x = y = 0
+for row in level:
+    for col in row:
+        if col == "W":
+            Wall((x, y))
+        x += 16
+    y += 16
+    x = 0
+
 player = Player()  # define player as an instance of class Player
 enemy = Enemy()
 chest = Chest()
@@ -142,6 +177,9 @@ while 1:  # main game loop
     screen.blit(label, (100, 100))
 
     enemy.move_to_player(player)
+
+    for wall in walls:
+        pygame.draw.rect(screen, (255, 255, 255), wall.rect)
 
     pygame.display.flip()  # updates screen
     clock.tick(30)
