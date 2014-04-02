@@ -26,7 +26,7 @@
       <file leaf-file-name="thingie.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/thingie.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="173" column="0" selection-start="4967" selection-end="4967" vertical-scroll-proportion="0.70032054" vertical-offset="2504" max-vertical-offset="3230">
+            <state line="7" column="34" selection-start="113" selection-end="113" vertical-scroll-proportion="0.19070514" vertical-offset="0" max-vertical-offset="3757">
               <folding>
                 <element signature="e#20#33#0" expanded="true" />
               </folding>
@@ -37,8 +37,10 @@
       <file leaf-file-name="thingie" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/thingie">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="182" column="18" selection-start="5214" selection-end="5214" vertical-scroll-proportion="0.0" vertical-offset="2453" max-vertical-offset="3145">
-              <folding />
+            <state line="18" column="10" selection-start="484" selection-end="484" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3723">
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -63,15 +65,15 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/thingie.py" />
         <option value="$PROJECT_DIR$/thingie" />
+        <option value="$PROJECT_DIR$/thingie.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="64" />
     <option name="y" value="56" />
-    <option name="width" value="1400" />
+    <option name="width" value="1416" />
     <option name="height" value="932" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -310,14 +312,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="56" width="1400" height="932" extended-state="0" />
+    <frame x="64" y="56" width="1416" height="932" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24714285" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39976415" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -351,6 +353,31 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/thingie.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="198" column="38" selection-start="20" selection-end="5835" vertical-scroll-proportion="0.0" vertical-offset="2668" max-vertical-offset="3468">
+          <folding>
+            <element signature="e#20#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thingie">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="161" column="9" selection-start="4544" selection-end="4544" vertical-scroll-proportion="0.0" vertical-offset="2737" max-vertical-offset="3519">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="15" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="306">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thingie.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="139" column="0" selection-start="3875" selection-end="3875" vertical-scroll-proportion="0.0" vertical-offset="2226" max-vertical-offset="2975">
           <folding>
             <element signature="e#20#33#0" expanded="true" />
@@ -361,7 +388,9 @@
     <entry file="file://$PROJECT_DIR$/thingie">
       <provider selected="true" editor-type-id="text-editor">
         <state line="135" column="43" selection-start="3820" selection-end="3820" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2941">
-          <folding />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -384,7 +413,9 @@
     <entry file="file://$PROJECT_DIR$/thingie">
       <provider selected="true" editor-type-id="text-editor">
         <state line="112" column="37" selection-start="3269" selection-end="3269" vertical-scroll-proportion="0.0" vertical-offset="1904" max-vertical-offset="2550">
-          <folding />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -407,7 +438,9 @@
     <entry file="file://$PROJECT_DIR$/thingie">
       <provider selected="true" editor-type-id="text-editor">
         <state line="127" column="64" selection-start="0" selection-end="4437" vertical-scroll-proportion="0.0" vertical-offset="2159" max-vertical-offset="2550">
-          <folding />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -430,7 +463,9 @@
     <entry file="file://$PROJECT_DIR$/thingie">
       <provider selected="true" editor-type-id="text-editor">
         <state line="106" column="40" selection-start="3089" selection-end="3089" vertical-scroll-proportion="0.0" vertical-offset="1802" max-vertical-offset="2397">
-          <folding />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -453,7 +488,9 @@
     <entry file="file://$PROJECT_DIR$/thingie">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="2380">
-          <folding />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -476,7 +513,9 @@
     <entry file="file://$PROJECT_DIR$/thingie">
       <provider selected="true" editor-type-id="text-editor">
         <state line="78" column="40" selection-start="2426" selection-end="2426" vertical-scroll-proportion="0.0" vertical-offset="1326" max-vertical-offset="1734">
-          <folding />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -499,7 +538,9 @@
     <entry file="file://$PROJECT_DIR$/thingie">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="40" selection-start="596" selection-end="596" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="1156">
-          <folding />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -522,7 +563,9 @@
     <entry file="file://$PROJECT_DIR$/thingie">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="28" selection-start="0" selection-end="1747" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="884">
-          <folding />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -558,14 +601,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/thingie">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="18" selection-start="5214" selection-end="5214" vertical-scroll-proportion="0.0" vertical-offset="2453" max-vertical-offset="3145">
-          <folding />
+        <state line="18" column="10" selection-start="484" selection-end="484" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3723">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thingie.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="173" column="0" selection-start="4967" selection-end="4967" vertical-scroll-proportion="0.70032054" vertical-offset="2504" max-vertical-offset="3230">
+        <state line="7" column="34" selection-start="113" selection-end="113" vertical-scroll-proportion="0.19070514" vertical-offset="0" max-vertical-offset="3757">
           <folding>
             <element signature="e#20#33#0" expanded="true" />
           </folding>
