@@ -31,6 +31,7 @@ class Player(pygame.sprite.Sprite):  # create a class named Player
         self.hp = 50
         self.strength = 10
         self.dmgmod = 1
+        self.speed = 5
 
     def move(self, dx, dy):  # defines player movement
         if dx != 0:
@@ -41,7 +42,7 @@ class Player(pygame.sprite.Sprite):  # create a class named Player
     def move_single_axis(self, dx, dy):
         self.player_rect.x += dx
         self.player_rect.y += dy
-        
+
         for wall in walls:
             if self.player_rect.colliderect(wall.rect):
                 if dx > 0: # Moving right; Hit the left side of the wall
@@ -54,13 +55,11 @@ class Player(pygame.sprite.Sprite):  # create a class named Player
                     self.player_rect.top = wall.rect.bottom
 
     def render(self):  # render function
-        screen.blit(self.bitmap, (self.shipRect))
+        screen.blit(self.bitmap, self.shipRect)
 
     def player_attack(self, target):  # allows player to attack enemy
         player_damage_dealt = self.strength * self.dmgmod
         target.hp -= player_damage_dealt
-        if target.hp <= 0:
-            target.die()
         return
 
 
@@ -75,6 +74,8 @@ class Enemy(pygame.sprite.Sprite):
 
         self.hp = 10
         self.strength = 7
+        self.speed = 3
+        self.dead = False
 
     def move_to_player(self, Player):  # makes enemy move towards the player's positio
         dx, dy = player.player_rect.x - self.enemy_rect.x, player.player_rect.y - self.enemy_rect.y
@@ -88,12 +89,14 @@ class Enemy(pygame.sprite.Sprite):
         self.enemy_rect.y += dy * self.speed
         return
 
-    def die(self):  # removes instance of class
-        enemy = None
-
     def rebound(self, x, y):  # moves enemy away when hit
         self.enemy_rect.centerx += x
         self.enemy_rect.centery += y
+
+    def enemy_attack(self, target):
+        enemy_damage_dealt = self.strength
+        target.hp -= enemy_damage_dealt
+        return
 
 
 class Chest(pygame.sprite.Sprite):
@@ -158,22 +161,71 @@ fighting = False
 
 while 1:  # main game loop
 
-    while fighting:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+    while fighting:  # fighting loop
 
-        screen.fill(colour)
+        if player.speed > enemy.speed:
+            player_turn = True
+        else:
+            player_turn = False
 
-        screen.blit(player.bitmap, player.player_rect)
+        while player_turn:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:  # looks for an exit command
+                    pygame.quit()  # quits pygame
+                    sys.exit()  # closes system
 
-        pygame.display.flip()  # updates screen
-        clock.tick(30)  # limits fps to 30
+            screen.fill(colour)
+
+            screen.blit(player.bitmap, player.player_rect)
+            screen.blit(enemy.bitmap, enemy.enemy_rect)
+
+            player.player_rect.x = 100
+            player.player_rect.y = 300
+
+            enemy.enemy_rect.x = 700
+            enemy.enemy_rect.y = 300
+
+            player.player_attack(enemy)
+
+            if enemy.hp <= 0:
+                fighting = False
+
+            pygame.display.flip()  # updates screen
+            clock.tick(30)  # limits fps to 30
+
+            player_turn = False
+
+            break
+
+        while not player_turn:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:  # looks for an exit command
+                    pygame.quit()  # quits pygame
+                    sys.exit()  # closes system
+
+            screen.fill(colour)
+
+            screen.blit(player.bitmap, player.player_rect)
+            screen.blit(enemy.bitmap, enemy.enemy_rect)
+
+            player.player_rect.x = 100
+            player.player_rect.y = 300
+
+            enemy.enemy_rect.x = 700
+            enemy.enemy_rect.y = 300
+
+            enemy.enemy_attack(player)
+
+            pygame.display.flip()  # updates screen
+            clock.tick(30)  # limits fps to 30
+
+            player_turn = True
+
+            break
 
     while not fighting:
         label = myfont.render(str(enemy.hp), 1, (255, 255, 0))
-        label2 = myfont.render(str("Opened!"), 1, (255, 255, 0))
+        label2 = myfont.render(str(player.hp), 1, (255, 255, 0))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # looks for an exit command
@@ -201,11 +253,13 @@ while 1:  # main game loop
 
         screen.blit(player.bitmap, player.player_rect)  # calls blit function on specified classes
 
-        screen.blit(enemy.bitmap, enemy.enemy_rect)
+        if enemy.dead is False:
+            screen.blit(enemy.bitmap, enemy.enemy_rect)
 
         # screen.blit(chest.bitmap, chest.chest_rect)
 
         screen.blit(label, (100, 100))
+        screen.blit(label2, (100, 50))
 
         enemy.move_to_player(player)
 
