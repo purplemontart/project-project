@@ -2,6 +2,7 @@
   <dictionary name="Sam">
     <words>
       <w>pygame</w>
+      <w>weaponmod</w>
     </words>
   </dictionary>
 </component>

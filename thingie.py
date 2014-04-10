@@ -4,21 +4,31 @@ import pygame
 import sys
 import pygame.locals
 import math
+import random
+import time
 
 pygame.init()  # initialise pygame
+pygame.mixer.init()
+
+music = 'Canon in D 8-bit Chiptune.mp3'
+
+pygame.mixer.music.load(music)
+pygame.mixer.music.play(-1, 0.0)
+
+while pygame.mixer.music.get_busy():
+    pygame.time.Clock().tick(10)
 
 size = width, height = 800, 600  # set size of screen
 colour = 100, 20, 30  # colour for background
 
 screen = pygame.display.set_mode(size)  # apply screen size
-pygame.display.set_caption('Lord of the Sings')  # set name on screen
+pygame.display.set_caption('Lord of the Sings')  # set title of game window
 
 clock = pygame.time.Clock()  # sets up a clock to control FPS
 
 myfont = pygame.font.SysFont("monospace", 15)  # set font for later use
 
-walls = []
-nodes = []
+walls = []  # creates an array called walls
 
 
 class Player(pygame.sprite.Sprite):  # create a class named Player
@@ -33,6 +43,22 @@ class Player(pygame.sprite.Sprite):  # create a class named Player
         self.dmgmod = 1
         self.speed = 5
 
+        self.inventory = []
+
+        self.weaponmod = 0
+
+        if "stick" in self.inventory:
+            self.weaponmod = 1
+
+        if "dagger" in self.inventory:
+            self.weaponmod = 2
+
+        if "sword" in self.inventory:
+            self.weaponmod = 3
+
+        if "bastard sword" in self.inventory:
+            self.weaponmod = 5
+
     def move(self, dx, dy):  # defines player movement
         if dx != 0:
             self.move_single_axis(dx, 0)
@@ -45,20 +71,20 @@ class Player(pygame.sprite.Sprite):  # create a class named Player
 
         for wall in walls:
             if self.player_rect.colliderect(wall.rect):
-                if dx > 0: # Moving right; Hit the left side of the wall
+                if dx > 0:  # Moving right; Hit the left side of the wall
                     self.player_rect.right = wall.rect.left
-                if dx < 0: # Moving left; Hit the right side of the wall
+                if dx < 0:  # Moving left; Hit the right side of the wall
                     self.player_rect.left = wall.rect.right
-                if dy > 0: # Moving down; Hit the top side of the wall
+                if dy > 0:  # Moving down; Hit the top side of the wall
                     self.player_rect.bottom = wall.rect.top
-                if dy < 0: # Moving up; Hit the bottom side of the wall
+                if dy < 0:  # Moving up; Hit the bottom side of the wall
                     self.player_rect.top = wall.rect.bottom
 
     def render(self):  # render function
         screen.blit(self.bitmap, self.shipRect)
 
     def player_attack(self, target):  # allows player to attack enemy
-        player_damage_dealt = self.strength * self.dmgmod
+        player_damage_dealt = self.strength * self.dmgmod + self.weaponmod
         target.hp -= player_damage_dealt
         return
 
@@ -77,16 +103,18 @@ class Enemy(pygame.sprite.Sprite):
         self.speed = 3
         self.dead = False
 
-    def move_to_player(self, Player):  # makes enemy move towards the player's positio
+    def move_to_player(self, Player):  # makes enemy move towards the player's position
         dx, dy = player.player_rect.x - self.enemy_rect.x, player.player_rect.y - self.enemy_rect.y
         dist = math.hypot(dx, dy)
+
         if dist == 0:
             dist = 1
         else:
             dx, dy = dx / dist, dy / dist
 
-        self.enemy_rect.x += dx * self.speed
-        self.enemy_rect.y += dy * self.speed
+        if dist < 100:  # means that the enemy will only move towards the player if within the stated distance in pixels
+            self.enemy_rect.x += dx * self.speed
+            self.enemy_rect.y += dy * self.speed
         return
 
     def rebound(self, x, y):  # moves enemy away when hit
@@ -105,7 +133,17 @@ class Chest(pygame.sprite.Sprite):
 
         self.bitmap = pygame.image.load("chest.png")
         self.chest_rect = self.bitmap.get_rect()
-        self.chest_rect.topleft = [100, 200]
+
+        self.contents_weapons = ["sword", "bastard sword", "dagger", "stick"]
+
+        self.opened = False
+
+    def open(self):
+        if self.opened is False:
+            player.inventory.append(random.choice(self.contents_weapons))
+            print(player.inventory)
+            self.opened = True
+        return
 
 
 class Wall(object):
@@ -120,7 +158,7 @@ class Node(object):
 
 level = [  # array to store the level map
 "WWWWWWWWWWWWWWWWWWWW",
-"WnnnnnnnnnnnnnnnnnnW",
+"W                  W",
 "W         WWWWWW   W",
 "W   WWWW       W   W",
 "W   W        WWWW  W",
@@ -132,22 +170,20 @@ level = [  # array to store the level map
 "WWW   W   WWWWW W  W",
 "W W      WW        W",
 "W W   WWWW   WWW   W",
-"W     W    E   W   W",
+"W     W        W   W",
 "WWWWWWWWWWWWWWWWWWWW",
 ]
 
-x = y = 0  # sets up map
-for row in level:
-    for col in row:
-        if col == "W":
-            Wall((x, y))
-        if col == "n":
-            Node((x, y))
-        x += 40
-    y += 40
-    x = 0
+x = y = 0
+for row in level:  # sets up map. for every row in the array...
+    for col in row:  # ...and every column in each row...
+        if col == "W":  # ...finds every instance of W...
+            Wall((x, y))  # ...and creates an instance of the Wall class
+        x += 40  # moves along 40 pixels on the x axis
+    y += 40  # moves down 40 on the y axis
+    x = 0  # resets x to 0
 
-player = Player()  # define player as an instance of class Player
+player = Player()  # creates an instance of the Player class called player
 enemy = Enemy()
 chest = Chest()
 
@@ -156,6 +192,9 @@ player.player_rect.y = 450
 
 enemy.enemy_rect.x = 500  # sets enemy start position
 enemy.enemy_rect.y = 100
+
+chest.chest_rect.x = 42
+chest.chest_rect.y = 500
 
 fighting = False
 
@@ -174,10 +213,15 @@ while 1:  # main game loop
                     pygame.quit()  # quits pygame
                     sys.exit()  # closes system
 
+            label = myfont.render("Press space to attack or enter to wait", 1, (255, 255, 0))
+
+            key = pygame.key.get_pressed()
+
             screen.fill(colour)
 
             screen.blit(player.bitmap, player.player_rect)
             screen.blit(enemy.bitmap, enemy.enemy_rect)
+            screen.blit(label, (200, 400))
 
             player.player_rect.x = 100
             player.player_rect.y = 300
@@ -185,7 +229,10 @@ while 1:  # main game loop
             enemy.enemy_rect.x = 700
             enemy.enemy_rect.y = 300
 
-            player.player_attack(enemy)
+            if key[pygame.K_SPACE]:
+                player.player_attack(enemy)
+            elif key[pygame.K_RETURN]:
+                break
 
             if enemy.hp <= 0:
                 fighting = False
@@ -203,10 +250,15 @@ while 1:  # main game loop
                     pygame.quit()  # quits pygame
                     sys.exit()  # closes system
 
+            label = myfont.render("Press space to continue", 1, (255, 255, 0))
+
+            key = pygame.key.get_pressed()
+
             screen.fill(colour)
 
             screen.blit(player.bitmap, player.player_rect)
             screen.blit(enemy.bitmap, enemy.enemy_rect)
+            screen.blit(label, (200, 400))
 
             player.player_rect.x = 100
             player.player_rect.y = 300
@@ -214,7 +266,8 @@ while 1:  # main game loop
             enemy.enemy_rect.x = 700
             enemy.enemy_rect.y = 300
 
-            enemy.enemy_attack(player)
+            if key[pygame.K_SPACE]:
+                enemy.enemy_attack(player)
 
             pygame.display.flip()  # updates screen
             clock.tick(30)  # limits fps to 30
@@ -224,13 +277,13 @@ while 1:  # main game loop
             break
 
     while not fighting:
-        label = myfont.render(str(enemy.hp), 1, (255, 255, 0))
-        label2 = myfont.render(str(player.hp), 1, (255, 255, 0))
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # looks for an exit command
                 pygame.quit()  # quits pygame
                 sys.exit()  # closes system
+
+        label = myfont.render(str(enemy.hp), 1, (255, 255, 0))
+        label2 = myfont.render(str(player.hp), 1, (255, 255, 0))
 
         key = pygame.key.get_pressed()
         if key[pygame.K_LEFT]:
@@ -249,6 +302,9 @@ while 1:  # main game loop
                 player.player_attack(enemy)
                 enemy.rebound(200, -300)
 
+        if player.player_rect.colliderect(chest.chest_rect):
+            chest.open()
+
         screen.fill(colour)  # fills screen with colour defined above
 
         screen.blit(player.bitmap, player.player_rect)  # calls blit function on specified classes
@@ -256,7 +312,7 @@ while 1:  # main game loop
         if enemy.dead is False:
             screen.blit(enemy.bitmap, enemy.enemy_rect)
 
-        # screen.blit(chest.bitmap, chest.chest_rect)
+        screen.blit(chest.bitmap, chest.chest_rect)
 
         screen.blit(label, (100, 100))
         screen.blit(label2, (100, 50))
