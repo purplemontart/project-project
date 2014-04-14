@@ -47,18 +47,6 @@ class Player(pygame.sprite.Sprite):  # create a class named Player
 
         self.weaponmod = 0
 
-        if "stick" in self.inventory:
-            self.weaponmod = 1
-
-        if "dagger" in self.inventory:
-            self.weaponmod = 2
-
-        if "sword" in self.inventory:
-            self.weaponmod = 3
-
-        if "bastard sword" in self.inventory:
-            self.weaponmod = 5
-
     def move(self, dx, dy):  # defines player movement
         if dx != 0:
             self.move_single_axis(dx, 0)
@@ -142,6 +130,16 @@ class Chest(pygame.sprite.Sprite):
         if self.opened is False:
             player.inventory.append(random.choice(self.contents_weapons))
             print(player.inventory)
+
+            if "stick" in player.inventory:
+                player.weaponmod = 1
+            if "dagger" in player.inventory:
+                player.weaponmod = 2
+            if "sword" in player.inventory:
+                player.weaponmod = 3
+            if "bastard sword" in player.inventory:
+                player.weaponmod = 5
+
             self.opened = True
         return
 
@@ -200,81 +198,59 @@ fighting = False
 
 while 1:  # main game loop
 
+    if player.speed > enemy.speed:
+        player_turn = True
+    else:
+        player_turn = False
+
     while fighting:  # fighting loop
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:  # looks for an exit command
+                pygame.quit()  # quits pygame
+                sys.exit()  # closes system
 
-        if player.speed > enemy.speed:
-            player_turn = True
+        screen.fill(colour)
+
+        screen.blit(player.bitmap, player.player_rect)
+        screen.blit(enemy.bitmap, enemy.enemy_rect)
+        screen.blit(label, (200, 400))
+
+        player.player_rect.x = 100
+        player.player_rect.y = 300
+
+        enemy.enemy_rect.x = 700
+        enemy.enemy_rect.y = 300
+
+        if enemy.hp <= 0:
+            fighting = False
+            break
         else:
-            player_turn = False
-
-        while player_turn:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:  # looks for an exit command
-                    pygame.quit()  # quits pygame
-                    sys.exit()  # closes system
-
-            label = myfont.render("Press space to attack or enter to wait", 1, (255, 255, 0))
-
             key = pygame.key.get_pressed()
 
-            screen.fill(colour)
+            if player_turn:
+                label = myfont.render("Press space to attack or enter to wait", 1, (255, 255, 0))
 
-            screen.blit(player.bitmap, player.player_rect)
-            screen.blit(enemy.bitmap, enemy.enemy_rect)
-            screen.blit(label, (200, 400))
+                if key[pygame.K_SPACE]:
+                    player.player_attack(enemy)
+                    pygame.time.wait(1)
+                    player_turn = False
+                    if enemy.hp <= 0:
+                        break
+                elif key[pygame.K_RETURN]:
+                    player_turn = False
 
-            player.player_rect.x = 100
-            player.player_rect.y = 300
+            if not player_turn:
+                label = myfont.render("Press X to continue", 1, (255, 255, 0))
+                if key[pygame.K_x]:
+                    label = myfont.render("Hit!", 1, (255, 255, 0))
+                    enemy.enemy_attack(player)
+                    player_turn = True
+                elif key[pygame.K_y]:
+                    label = myfont.render("Surprise!", 1, (255, 255, 0))
+                    player_turn = True
 
-            enemy.enemy_rect.x = 700
-            enemy.enemy_rect.y = 300
-
-            if key[pygame.K_SPACE]:
-                player.player_attack(enemy)
-            elif key[pygame.K_RETURN]:
-                break
-
-            if enemy.hp <= 0:
-                fighting = False
-
-            pygame.display.flip()  # updates screen
-            clock.tick(30)  # limits fps to 30
-
-            player_turn = False
-
-            break
-
-        while not player_turn:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:  # looks for an exit command
-                    pygame.quit()  # quits pygame
-                    sys.exit()  # closes system
-
-            label = myfont.render("Press space to continue", 1, (255, 255, 0))
-
-            key = pygame.key.get_pressed()
-
-            screen.fill(colour)
-
-            screen.blit(player.bitmap, player.player_rect)
-            screen.blit(enemy.bitmap, enemy.enemy_rect)
-            screen.blit(label, (200, 400))
-
-            player.player_rect.x = 100
-            player.player_rect.y = 300
-
-            enemy.enemy_rect.x = 700
-            enemy.enemy_rect.y = 300
-
-            if key[pygame.K_SPACE]:
-                enemy.enemy_attack(player)
-
-            pygame.display.flip()  # updates screen
-            clock.tick(30)  # limits fps to 30
-
-            player_turn = True
-
-            break
+        pygame.display.flip()
+        clock.tick(30)
 
     while not fighting:
         for event in pygame.event.get():
@@ -298,9 +274,6 @@ while 1:  # main game loop
         if player.player_rect.colliderect(enemy.enemy_rect):  # sets up player collision with enemy
             fighting = True
             pygame.display.set_caption(str(fighting))
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                player.player_attack(enemy)
-                enemy.rebound(200, -300)
 
         if player.player_rect.colliderect(chest.chest_rect):
             chest.open()
