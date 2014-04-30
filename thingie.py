@@ -261,6 +261,16 @@ while not lose:  # main game loop
         screen.blit(label2, (200, 300))
         screen.blit(label4, (200, 400))
 
+        if key[pygame.K_ESCAPE]:
+            player.hp = 999
+            player.strength = 999
+
+            enemy.hp = 1
+            enemy.strength = 1
+
+            boss.hp = 1
+            boss.strength = 1
+
         if key[pygame.K_RETURN]:
             pygame.mixer.music.play(-1, 0.0)
 
@@ -405,6 +415,8 @@ while not lose:  # main game loop
                 screen.blit(label2, (100, 80))
                 screen.blit(label3, (100, 60))
 
+                pygame.mixer.music.fadeout(10000)
+
                 key = pygame.key.get_pressed()
                 if key[pygame.K_RETURN]:
                     pygame.quit()
@@ -421,14 +433,14 @@ while not lose:  # main game loop
                     screen.blit(label2, (100, 80))
                     screen.blit(label3, (100, 100))
 
+                    pygame.mixer.music.fadeout(10000)
+
                     key = pygame.key.get_pressed()
                     if key[pygame.K_RETURN]:
                         pygame.quit()
                         sys.exit()
 
                 else:
-                    label = myfont.render(str(player.hp), 1, (255, 255, 0))
-
                     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                         pos = pygame.mouse.get_pos()
 
@@ -453,7 +465,7 @@ while not lose:  # main game loop
                         player.saved_x, player.saved_y = player.player_rect.x, player.player_rect.y
                         enemy.dead = False
 
-                    if player.player_rect.colliderect(boss.boss_rect):
+                    if player.player_rect.colliderect(boss.boss_rect) and enemy.number == 2:
                         fighting = True
                         bossFighting = True
                         pygame.display.set_caption(str(bossFighting))
@@ -469,8 +481,6 @@ while not lose:  # main game loop
                     screen.blit(boss.bitmap, boss.boss_rect)
 
                     screen.blit(chest.bitmap, chest.chest_rect)
-
-                    screen.blit(label, (100, 100))
 
                     enemy.move_to_player(player)
                     boss.move_to_player(player)

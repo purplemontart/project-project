@@ -23,19 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="thingie.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="thingie.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/thingie.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="463" column="81" selection-start="16105" selection-end="16105" vertical-scroll-proportion="0.0" vertical-offset="4732" max-vertical-offset="8228">
+            <state line="474" column="0" selection-start="16282" selection-end="16282" vertical-scroll-proportion="0.39967898" vertical-offset="7707" max-vertical-offset="8398">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="thingie" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="thingie" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/thingie">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="30" selection-start="226" selection-end="226" vertical-scroll-proportion="0.19101124" vertical-offset="0" max-vertical-offset="8194">
+            <state line="24" column="0" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8364">
               <folding />
             </state>
           </provider>
@@ -323,11 +323,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -690,16 +690,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/thingie.py">
+    <entry file="file://$PROJECT_DIR$/thingie">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="463" column="81" selection-start="16105" selection-end="16105" vertical-scroll-proportion="0.0" vertical-offset="4732" max-vertical-offset="8228">
+        <state line="24" column="0" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8364">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/thingie">
+    <entry file="file://$PROJECT_DIR$/thingie.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="30" selection-start="226" selection-end="226" vertical-scroll-proportion="0.19101124" vertical-offset="0" max-vertical-offset="8194">
+        <state line="474" column="0" selection-start="16282" selection-end="16282" vertical-scroll-proportion="0.39967898" vertical-offset="7707" max-vertical-offset="8398">
           <folding />
         </state>
       </provider>
