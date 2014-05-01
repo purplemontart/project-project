@@ -1,4 +1,4 @@
-__author__ = 'Sam'
+__author__ = 'B00187837'
 
 import pygame
 import sys
@@ -73,6 +73,7 @@ class Player(pygame.sprite.Sprite):  # create a class named Player
         for target in targets:
             if self.player_rect.colliderect(target.rect):
                 boss.strength -= 3
+                boss.hp -= 5
                 target.rect.x, target.rect.y = 1000, 2000
 
     def player_attack(self, target):  # allows player to attack enemy
@@ -124,8 +125,8 @@ class Boss(pygame.sprite.Sprite):
         self.boss_rect = self.bitmap.get_rect()
         self.boss_rect.topleft = [100, 200]
 
-        self.hp = 7
-        self.strength = 3
+        self.hp = 70
+        self.strength = 30
         self.speed = 2
         self.dead = False
         self.number = 1
@@ -255,11 +256,9 @@ while not lose:  # main game loop
         label = myfont.render("Welcome to Only This And Nothing More!", 1, (255, 255, 0))
         label2 = myfont.render("Press Enter to begin, or space for more information!", 1, (255, 255, 0))
         label3 = myfont.render("Use the arrow keys to control the player.", 1, (255, 255, 0))
-        label4 = myfont.render("Placeholder for title image", 1, (255, 255, 0))
 
         screen.blit(label, (200, 200))
         screen.blit(label2, (200, 300))
-        screen.blit(label4, (200, 400))
 
         if key[pygame.K_ESCAPE]:
             player.hp = 999
@@ -411,9 +410,9 @@ while not lose:  # main game loop
                 label2 = myfont.render("Better luck next time!", 1, (255, 255, 0))
                 label3 = myfont.render("Press enter to quit", 1, (255, 255, 0))
 
-                screen.blit(label, (100, 100))
+                screen.blit(label, (100, 60))
                 screen.blit(label2, (100, 80))
-                screen.blit(label3, (100, 60))
+                screen.blit(label3, (100, 100))
 
                 pygame.mixer.music.fadeout(10000)
 
@@ -441,9 +440,6 @@ while not lose:  # main game loop
                         sys.exit()
 
                 else:
-                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                        pos = pygame.mouse.get_pos()
-
                     key = pygame.key.get_pressed()
                     if key[pygame.K_LEFT]:
                         player.move(-2, 0)

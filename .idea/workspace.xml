@@ -26,7 +26,7 @@
       <file leaf-file-name="thingie.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/thingie.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="474" column="0" selection-start="16282" selection-end="16282" vertical-scroll-proportion="0.39967898" vertical-offset="7707" max-vertical-offset="8398">
+            <state line="397" column="37" selection-start="12932" selection-end="12932" vertical-scroll-proportion="0.42625" vertical-offset="6306" max-vertical-offset="8347">
               <folding />
             </state>
           </provider>
@@ -35,7 +35,7 @@
       <file leaf-file-name="thingie" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/thingie">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8364">
+            <state line="473" column="66" selection-start="0" selection-end="16958" vertical-scroll-proportion="0.0" vertical-offset="7122" max-vertical-offset="8330">
               <folding />
             </state>
           </provider>
@@ -678,28 +678,24 @@
     </entry>
     <entry file="file://C:/Python27/Lib/site-packages/pygame/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5270">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5270" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.PyCharm30/system/python_stubs/-762174762/__builtin__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.16853933" vertical-offset="354" max-vertical-offset="86224">
-          <folding />
-        </state>
+        <state line="27" column="0" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.16853933" vertical-offset="354" max-vertical-offset="86224" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thingie">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8364">
+        <state line="473" column="66" selection-start="0" selection-end="16958" vertical-scroll-proportion="0.0" vertical-offset="7122" max-vertical-offset="8330">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/thingie.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="474" column="0" selection-start="16282" selection-end="16282" vertical-scroll-proportion="0.39967898" vertical-offset="7707" max-vertical-offset="8398">
+        <state line="397" column="37" selection-start="12932" selection-end="12932" vertical-scroll-proportion="0.42625" vertical-offset="6306" max-vertical-offset="8347">
           <folding />
         </state>
       </provider>
